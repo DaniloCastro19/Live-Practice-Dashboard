@@ -4,5 +4,6 @@ export default interface Song {
   lyrics: string;
   key: string;
   isCover: boolean;
+  author?: string;
   secondsPracticed: number;
 }
