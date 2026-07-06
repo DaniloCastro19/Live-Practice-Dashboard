@@ -6,7 +6,7 @@ export const mockSongs: Song[] = [
     title: "Amazing Grace",
     lyrics:
       "Amazing grace, how sweet the sound\nThat saved a wretch like me\nI once was lost, but now am found\nWas blind, but now I see",
-    key: "G",
+    key: "Gm",
     isCover: true,
     secondsPracticed: 3600,
     author: "John Newton",
@@ -35,7 +35,7 @@ export const mockSongs: Song[] = [
     title: "Oceans",
     lyrics:
       "You call me out upon the waters\nThe great unknown where feet may fail\nAnd there I find You in the mystery\nIn oceans deep my faith will stand",
-    key: "D",
+    key: "Dm",
     isCover: true,
     secondsPracticed: 5400,
     author: "Jhon Pork",
