@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 import { formatTime } from "../../../core/utils/functions/formatTime";
 
 export default function PracticeTracker() {
-  // const navigate = useNavigate();
   const songs = useRepertoireStore((state) => state.songs);
   const activeSongId = useRepertoireStore((state) => state.activeSongId);
   const setActiveSongId = useRepertoireStore((state) => state.setActiveSongId);

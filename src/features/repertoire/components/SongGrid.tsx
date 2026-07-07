@@ -7,23 +7,24 @@ export default function SongGrid() {
 
   return (
     <>
-      <div style={styles.grid}>
+      <div className="grid">
         {songs.map((song) => (
           <SongCard key={song.id} song={song} />
         ))}
+        <div className="floating-btn-container">
+          <AddFloatingButton />
+        </div>
       </div>
-      <div className="floating-btn-container">
-        <AddFloatingButton />
-      </div>
+      <style>{styles}</style>
     </>
   );
 }
 
-const styles: { [key: string]: React.CSSProperties } = {
-  grid: {
-    display: "grid",
-    gridTemplateColumns: "repeat(auto-fill, minmax(200px, 1fr))",
-    gap: "1rem",
-    padding: "1rem",
-  },
-};
+const styles = `
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+    padding: 1rem;
+  }
+`;
