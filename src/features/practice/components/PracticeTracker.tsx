@@ -3,6 +3,7 @@ import { useRepertoireStore } from "../../../core/store/useRepertoireStore";
 import { SlButton, SlIcon, SlBadge } from "@shoelace-style/shoelace/dist/react";
 import { Link } from "react-router-dom";
 import { formatTime } from "../../../core/utils/functions/formatTime";
+import LyricsPanel from "./LyricsPanel";
 
 export default function PracticeTracker() {
   const songs = useRepertoireStore((state) => state.songs);
@@ -14,8 +15,7 @@ export default function PracticeTracker() {
 
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
   const [seconds, setSeconds] = useState<number>(0);
-  
-  // Cronometer effect: increments seconds every second when isPlaying is true
+
   useEffect(() => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     let interval: any | null = null;
@@ -89,6 +89,11 @@ export default function PracticeTracker() {
               />
               {isPlaying ? "Stop and save" : "Start practice"}
             </SlButton>
+
+            <LyricsPanel
+              songId={currentSong.id}
+              currentLyrics={currentSong.lyrics}
+            />
           </div>
 
           <style>{styles}</style>
@@ -105,6 +110,7 @@ export default function PracticeTracker() {
               Go back to repertoire
             </SlButton>
           </Link>
+          <style>{styles}</style>
         </div>
       )}
     </>
@@ -114,7 +120,7 @@ export default function PracticeTracker() {
 const styles = `
   .tracker-container {
     position: relative;
-    max-width: 480px;
+    max-width: 540px;
     margin: 2rem auto;
     padding: 3rem 2rem 2.5rem 2rem;
     background-color: #ffffff;
@@ -202,7 +208,7 @@ const styles = `
   .tracker-body {
     display: flex;
     flex-direction: column;
-    gap: 2.5rem;
+    gap: 2rem;
     align-items: center;
   }
 
@@ -221,5 +227,11 @@ const styles = `
 
   .control-button {
     width: 220px;
+  }
+
+  .tracker-subtitle {
+    font-size: 1rem;
+    color: var(--sl-color-neutral-500);
+    margin: 0;
   }
 `;
