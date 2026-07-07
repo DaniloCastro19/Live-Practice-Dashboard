@@ -1,4 +1,4 @@
-import React, { useState } from "react"; // 1. Importamos useState
+import React, { useState } from "react";
 import { useRepertoireStore } from "../../../core/store/useRepertoireStore";
 import {
   SlButton,

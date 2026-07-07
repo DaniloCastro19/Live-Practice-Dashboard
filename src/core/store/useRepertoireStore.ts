@@ -7,6 +7,7 @@ interface RepertoireState {
   activeSongId: string | null; // Follow up the song currently in session, if any
   setRepertoire: (songs: Song[]) => void;
   addSong: (song: Song) => void;
+  updateSong: (songId: string, updatedData: Partial<Song>) => void;
   removeSong: (songId: string) => void;
   setActiveSongId: (songId: string | null) => void; // Change or reset the active song in session
   addTimeToSong: (songId: string, seconds: number) => void;
@@ -38,6 +39,12 @@ export const useRepertoireStore = create<RepertoireState>()(
             song.id === songId
               ? { ...song, secondsPracticed: song.secondsPracticed + seconds }
               : song,
+          ),
+        })),
+      updateSong: (songId, updatedData) =>
+        set((state) => ({
+          songs: state.songs.map((song) =>
+            song.id === songId ? { ...song, ...updatedData } : song,
           ),
         })),
     }),
