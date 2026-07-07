@@ -1,6 +1,6 @@
-import SlPopup from "@shoelace-style/shoelace/dist/react/popup";
-import SlButton from "@shoelace-style/shoelace/dist/react/button";
-import SlIcon from "@shoelace-style/shoelace/dist/react/icon";
+import SlPopup from "@shoelace-style/shoelace/dist/react/popup/index.js";
+import SlButton from "@shoelace-style/shoelace/dist/react/button/index.js";
+import SlIcon from "@shoelace-style/shoelace/dist/react/icon/index.js";
 import { Link } from "react-router-dom";
 
 export default function AddFloatingButton() {
