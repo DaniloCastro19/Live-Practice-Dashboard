@@ -6,7 +6,7 @@ setBasePath(
 
 import "./App.css";
 import { lazy, Suspense } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import Header from "./components/Header";
 
 const SongGridComponent = lazy(
@@ -26,7 +26,11 @@ function App() {
       <Routes>
         <Route path="/" element={<SongGridComponent />} />
         <Route path="/addSong" element={<AddSongFormComponent />} />
-        <Route path="/liveSession/:songId" element={<PracticeTrackerComponent />} />
+        <Route
+          path="/liveSession/:songId"
+          element={<PracticeTrackerComponent />}
+        />
+        <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </Suspense>
   );

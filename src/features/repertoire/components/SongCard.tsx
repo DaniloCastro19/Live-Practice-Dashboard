@@ -32,7 +32,7 @@ export default function SongCard({ song }: SongCardProps) {
             <SlButton
               variant="primary"
               size="small"
-              onClick={setActiveSong(song.id)}
+              onClick={() => setActiveSong(song.id)}
             >
               <SlIcon slot="prefix" name="play-circle-fill"></SlIcon>
               Play Session

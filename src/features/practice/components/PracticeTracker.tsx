@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { formatTime } from "../../../core/utils/functions/formatTime";
 
 export default function PracticeTracker() {
+  // const navigate = useNavigate();
   const songs = useRepertoireStore((state) => state.songs);
   const activeSongId = useRepertoireStore((state) => state.activeSongId);
   const setActiveSongId = useRepertoireStore((state) => state.setActiveSongId);
@@ -14,7 +15,7 @@ export default function PracticeTracker() {
 
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
   const [seconds, setSeconds] = useState<number>(0);
-
+  
   // Cronometer effect: increments seconds every second when isPlaying is true
   useEffect(() => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -31,27 +32,9 @@ export default function PracticeTracker() {
     };
   }, [isPlaying]);
 
-  // If there's no active song, we show a safe empty state
-  if (!currentSong) {
-    return (
-      <div className="tracker-container">
-        <p className="tracker-subtitle">No songs selected for practice.</p>
-        <Link to="/">
-          <SlButton
-            variant="default"
-            onClick={() => setActiveSongId(null)}
-            style={{ marginTop: "1rem" }}
-          >
-            Go back to repertoire
-          </SlButton>
-        </Link>
-      </div>
-    );
-  }
-
   const handleTogglePractice = () => {
     if (isPlaying) {
-      addTimeToSong(currentSong.id, seconds);
+      addTimeToSong(currentSong!.id, seconds);
       setIsPlaying(false);
       setSeconds(0);
     } else {
@@ -59,51 +42,73 @@ export default function PracticeTracker() {
     }
   };
 
-  const handleBack = () => {
-    setActiveSongId(null);
-  };
-
   return (
-    <div className="tracker-container">
-      <button className="back-button" onClick={handleBack} disabled={isPlaying}>
-        <SlIcon name="arrow-left" /> Volver
-      </button>
+    <>
+      {currentSong ? (
+        <div className="tracker-container">
+          <Link to="/">
+            <button
+              className="back-button"
+              onClick={() => setActiveSongId(null)}
+              disabled={isPlaying}
+            >
+              <SlIcon name="arrow-left" /> Volver
+            </button>
+          </Link>
 
-      <div className="tracker-header">
-        <span className="live-indicator">
-          <span className={`dot ${isPlaying ? "pulse" : ""}`}></span>
-          {isPlaying ? "LIVE SESSION" : "PAUSED SESSION"}
-        </span>
+          <div className="tracker-header">
+            <span className="live-indicator">
+              <span className={`dot ${isPlaying ? "pulse" : ""}`}></span>
+              {isPlaying ? "LIVE SESSION" : "PAUSED SESSION"}
+            </span>
 
-        <h2 className="tracker-title">{currentSong.title}</h2>
+            <h2 className="tracker-title">{currentSong.title}</h2>
 
-        <div className="meta-badges">
-          <SlBadge variant="primary">{currentSong.key}</SlBadge>
-          {currentSong.isCover && (
-            <SlBadge variant="neutral">{currentSong.author}</SlBadge>
-          )}
+            <div className="meta-badges">
+              <SlBadge variant="primary">{currentSong.key}</SlBadge>
+              {currentSong.isCover && (
+                <SlBadge variant="neutral">{currentSong.author}</SlBadge>
+              )}
+            </div>
+          </div>
+
+          <div className="tracker-body">
+            <div className={`time-display ${isPlaying ? "active" : ""}`}>
+              {formatTime(seconds)}
+            </div>
+
+            <SlButton
+              variant={isPlaying ? "danger" : "success"}
+              onClick={handleTogglePractice}
+              className="control-button"
+              pill
+              size="large"
+            >
+              <SlIcon
+                slot="prefix"
+                name={isPlaying ? "stop-fill" : "play-fill"}
+              />
+              {isPlaying ? "Stop and save" : "Start practice"}
+            </SlButton>
+          </div>
+
+          <style>{styles}</style>
         </div>
-      </div>
-
-      <div className="tracker-body">
-        <div className={`time-display ${isPlaying ? "active" : ""}`}>
-          {formatTime(seconds)}
+      ) : (
+        <div className="tracker-container">
+          <p className="tracker-subtitle">No songs selected for practice.</p>
+          <Link to="/">
+            <SlButton
+              variant="default"
+              onClick={() => setActiveSongId(null)}
+              style={{ marginTop: "1rem" }}
+            >
+              Go back to repertoire
+            </SlButton>
+          </Link>
         </div>
-
-        <SlButton
-          variant={isPlaying ? "danger" : "success"}
-          onClick={handleTogglePractice}
-          className="control-button"
-          pill
-          size="large"
-        >
-          <SlIcon slot="prefix" name={isPlaying ? "stop-fill" : "play-fill"} />
-          {isPlaying ? "Stop and save" : "Start practice"}
-        </SlButton>
-      </div>
-
-      <style>{styles}</style>
-    </div>
+      )}
+    </>
   );
 }
 
