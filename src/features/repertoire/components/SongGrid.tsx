@@ -1,9 +1,12 @@
 import SongCard from "./SongCard";
-import { mockSongs } from "../../../core/utils/mock/songs";
+import { useRepertoireStore } from "../../../core/store/useRepertoireStore";
+
 export default function SongGrid() {
+  const songs = useRepertoireStore((state) => state.songs);
+
   return (
     <div style={styles.grid}>
-      {mockSongs.map((song) => (
+      {songs.map((song) => (
         <SongCard key={song.id} song={song} />
       ))}
     </div>

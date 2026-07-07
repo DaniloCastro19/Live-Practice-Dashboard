@@ -2,6 +2,8 @@ import SlCard from "@shoelace-style/shoelace/dist/react/card";
 import SlBadge from "@shoelace-style/shoelace/dist/react/badge";
 import isMajorKey from "../../../core/utils/functions/isMajorKey";
 import Song from "../../../core/models/song";
+import SlIcon from "@shoelace-style/shoelace/dist/react/icon";
+import SlButton from "@shoelace-style/shoelace/dist/react/button";
 
 interface SongCardProps {
   song: Song;
@@ -11,16 +13,19 @@ export default function SongCard({ song }: SongCardProps) {
     <>
       <SlCard key={song.id} className="card">
         <strong>{song.title}</strong>
-        <br />
         {!song.isCover ? (
           <p>Own</p>
         ) : (
           song.author && <p>Author: {song.author}</p>
         )}
-        <br />
         <SlBadge variant={isMajorKey(song.key) ? "success" : "neutral"}>
           {song.key}
         </SlBadge>
+        <br />
+        <SlButton variant="primary" size="small">
+          <SlIcon slot="prefix" name="play-circle-fill"></SlIcon>
+          Play Session
+        </SlButton>
       </SlCard>
       <style>{styles}</style>
     </>
@@ -38,7 +43,7 @@ const styles = `
     boxShadow: var(--sl-shadow-x-small);
     backgroundColor: var(--sl-panel-background-color);
     transition: transform 0.2s ease-in-out;
-    cursor: "pointer";
+    cursor: pointer;
   }
   .card:hover {
     cursor: pointer;

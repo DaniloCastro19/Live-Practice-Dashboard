@@ -1,6 +1,4 @@
 import SlIcon from "@shoelace-style/shoelace/dist/react/icon";
-import SlButton from '@shoelace-style/shoelace/dist/react/button';
-
 import "@shoelace-style/shoelace/dist/components/button/button.js";
 
 export default function Header() {
@@ -12,13 +10,6 @@ export default function Header() {
           <h1 style={styles.title}>Live Practice Board</h1>
           <span style={styles.subtitle}>Band Sessions</span>
         </div>
-      </div>
-
-      <div style={styles.actions}>
-        <SlButton variant="primary" size="small" pill>
-          <SlIcon slot="prefix" name="play-circle-fill"></SlIcon>
-          Quick Session
-        </SlButton>
       </div>
     </header>
   );
@@ -52,9 +43,5 @@ const styles: { [key: string]: React.CSSProperties } = {
   subtitle: {
     fontSize: "0.75rem",
     color: "var(--sl-color-neutral-500)",
-  },
-  actions: {
-    display: "flex",
-    gap: "0.5rem",
-  },
+  }
 };

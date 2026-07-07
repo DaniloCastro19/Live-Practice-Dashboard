@@ -5,21 +5,37 @@ setBasePath(
 );
 
 import "./App.css";
+import { lazy, Suspense } from "react";
+import { Routes, Route } from "react-router-dom";
 import Header from "./components/Header";
-import SongGrid from "./features/repertoire/components/SongGrid";
-import AddFloatingButton from "./features/repertoire/components/AddFloatingButton";
-import AddSongForm from "./features/repertoire/components/AddSongForm";
+
+const SongGridComponent = lazy(
+  () => import("./features/repertoire/components/SongGrid"),
+);
+const AddSongFormComponent = lazy(
+  () => import("./features/repertoire/components/AddSongForm"),
+);
+const AddFloatingButtonComponent = lazy(
+  () => import("./features/repertoire/components/AddFloatingButton"),
+);
+const PracticeTrackerComponent = lazy(
+  () => import("./features/practice/components/PracticeTracker"),
+);
+
 function App() {
   return (
-    <>
-      <AddSongForm/>
-
-      {/* <Header />
-      <SongGrid />
+    <Suspense fallback="Loading">
+      <Header />
+      <Routes>
+        <Route path="/" element={<SongGridComponent />} />
+        <Route path="/addSong" element={<AddSongFormComponent />} />
+        <Route path="/practice/:songId" element={<PracticeTrackerComponent />} />
+      </Routes>
+      <SongGridComponent />
       <div className="floating-btn-container">
-        <AddFloatingButton />
-      </div> */}
-    </>
+        <AddFloatingButtonComponent />
+      </div>
+    </Suspense>
   );
 }
 
