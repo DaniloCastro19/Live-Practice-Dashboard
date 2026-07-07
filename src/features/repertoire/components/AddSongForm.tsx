@@ -9,9 +9,11 @@ import {
   SlTextarea,
 } from "@shoelace-style/shoelace/dist/react";
 import { majorKeys } from "../../../core/models/keys";
+import { useNavigate } from "react-router-dom";
 
 export default function AddSongForm() {
   const addSong = useRepertoireStore((state) => state.addSong);
+  const navigate = useNavigate();
 
   const [isCover, setIsCover] = useState(false);
 
@@ -29,7 +31,7 @@ export default function AddSongForm() {
       key: finalKey,
       lyrics: formData.get("lyrics") as string,
       isCover: isCover,
-      author: isCover ? (formData.get("author") as string) : "(Propio)",
+      author: isCover ? (formData.get("author") as string) : "(Own)",
       secondsPracticed: 0,
     };
 
@@ -37,6 +39,7 @@ export default function AddSongForm() {
 
     e.currentTarget.reset();
     setIsCover(false);
+    navigate("/");
   };
 
   return (
