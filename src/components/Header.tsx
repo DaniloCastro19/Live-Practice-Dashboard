@@ -1,7 +1,26 @@
-import SlIcon from "@shoelace-style/shoelace/dist/react/icon";
+import { SlIcon, SlIconButton } from "@shoelace-style/shoelace/dist/react";
 import "@shoelace-style/shoelace/dist/components/button/button.js";
 import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+
 export default function Header() {
+  const [isDark, setIsDark] = useState(() => {
+    const savedTheme = localStorage.getItem("theme");
+    if (savedTheme) return savedTheme === "dark";
+    return window.matchMedia("(prefers-color-scheme: dark)").matches;
+  });
+
+  useEffect(() => {
+    const root = document.documentElement;
+    if (isDark) {
+      root.classList.add("sl-theme-dark");
+      localStorage.setItem("theme", "dark");
+    } else {
+      root.classList.remove("sl-theme-dark");
+      localStorage.setItem("theme", "light");
+    }
+  }, [isDark]);
+
   return (
     <>
       <header className="header">
@@ -14,6 +33,12 @@ export default function Header() {
             <span className="subtitle">Band Sessions</span>
           </div>
         </div>
+        <SlIconButton
+          name={isDark ? "sun-fill" : "moon-fill"}
+          label="Change Session Theme"
+          className="theme-toggle"
+          onClick={() => setIsDark(!isDark)}
+        />
       </header>
 
       <style>{css}</style>
@@ -50,8 +75,13 @@ const css = `
     color: var(--sl-color-neutral-900);
   }
 
-  .subtitle {
-    font-size: 0.75rem;
-    color: var(--sl-color-neutral-500);
+  .theme-toggle {
+    font-size: 1.25rem;
+    color: var(--sl-color-neutral-600);
+    transition: transform 0.2s ease;
+  }
+
+  .theme-toggle:hover {
+    transform: scale(1.1);
   }
 `;

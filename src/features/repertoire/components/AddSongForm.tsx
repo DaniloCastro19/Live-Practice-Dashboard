@@ -123,7 +123,7 @@ const styles = `
     max-width: 480px;
     margin: 2rem auto;
     padding: 2rem;
-    background-color: #ffffff;
+    background-color: var(--sl-panel-background-color);
     border-radius: 12px;
     border: 1px solid var(--sl-color-neutral-200);
     box-shadow: 0 4px 24px -8px rgba(0, 0, 0, 0.08);
