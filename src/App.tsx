@@ -8,15 +8,17 @@ import "./App.css";
 import Header from "./components/Header";
 import SongGrid from "./features/repertoire/components/SongGrid";
 import AddFloatingButton from "./features/repertoire/components/AddFloatingButton";
-
+import AddSongForm from "./features/repertoire/components/AddSongForm";
 function App() {
   return (
     <>
-      <Header />
+      <AddSongForm/>
+
+      {/* <Header />
       <SongGrid />
       <div className="floating-btn-container">
         <AddFloatingButton />
-      </div>
+      </div> */}
     </>
   );
 }
