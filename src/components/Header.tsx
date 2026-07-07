@@ -1,11 +1,13 @@
 import SlIcon from "@shoelace-style/shoelace/dist/react/icon";
 import "@shoelace-style/shoelace/dist/components/button/button.js";
-
+import { Link } from "react-router-dom";
 export default function Header() {
   return (
     <header style={styles.header}>
       <div style={styles.logoContainer}>
-        <SlIcon name="music-note-list" style={styles.icon}></SlIcon>
+        <Link to="/">
+          <SlIcon name="music-note-list" style={styles.icon}></SlIcon>
+        </Link>
         <div>
           <h1 style={styles.title}>Live Practice Board</h1>
           <span style={styles.subtitle}>Band Sessions</span>

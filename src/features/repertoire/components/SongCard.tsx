@@ -4,11 +4,14 @@ import isMajorKey from "../../../core/utils/functions/isMajorKey";
 import Song from "../../../core/models/song";
 import SlIcon from "@shoelace-style/shoelace/dist/react/icon";
 import SlButton from "@shoelace-style/shoelace/dist/react/button";
+import { Link } from "react-router-dom";
+import { useRepertoireStore } from "../../../core/store/useRepertoireStore";
 
 interface SongCardProps {
   song: Song;
 }
 export default function SongCard({ song }: SongCardProps) {
+  const setActiveSong = useRepertoireStore((state) => state.setActiveSongId);
   return (
     <>
       <SlCard key={song.id} className="card">
@@ -25,10 +28,16 @@ export default function SongCard({ song }: SongCardProps) {
             {song.key}
           </SlBadge>
 
-          <SlButton variant="primary" size="small">
-            <SlIcon slot="prefix" name="play-circle-fill"></SlIcon>
-            Play Session
-          </SlButton>
+          <Link to={`liveSession/${song.id}`}>
+            <SlButton
+              variant="primary"
+              size="small"
+              onClick={setActiveSong(song.id)}
+            >
+              <SlIcon slot="prefix" name="play-circle-fill"></SlIcon>
+              Play Session
+            </SlButton>
+          </Link>
         </div>
       </SlCard>
       <style>{styles}</style>

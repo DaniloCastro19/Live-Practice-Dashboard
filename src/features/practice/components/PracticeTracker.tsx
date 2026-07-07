@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { useRepertoireStore } from "../../../core/store/useRepertoireStore";
 import { SlButton, SlIcon, SlBadge } from "@shoelace-style/shoelace/dist/react";
+import { Link } from "react-router-dom";
+import { formatTime } from "../../../core/utils/functions/formatTime";
 
 export default function PracticeTracker() {
   const songs = useRepertoireStore((state) => state.songs);
@@ -33,16 +35,16 @@ export default function PracticeTracker() {
   if (!currentSong) {
     return (
       <div className="tracker-container">
-        <p className="tracker-subtitle">
-          No se ha seleccionado ninguna canción para practicar.
-        </p>
-        <SlButton
-          variant="default"
-          onClick={() => setActiveSongId(null)}
-          style={{ marginTop: "1rem" }}
-        >
-          Volver al repertorio
-        </SlButton>
+        <p className="tracker-subtitle">No songs selected for practice.</p>
+        <Link to="/">
+          <SlButton
+            variant="default"
+            onClick={() => setActiveSongId(null)}
+            style={{ marginTop: "1rem" }}
+          >
+            Go back to repertoire
+          </SlButton>
+        </Link>
       </div>
     );
   }
@@ -61,17 +63,6 @@ export default function PracticeTracker() {
     setActiveSongId(null);
   };
 
-  const formatTime = (totalSeconds: number) => {
-    const hrs = Math.floor(totalSeconds / 3600);
-    const mins = Math.floor((totalSeconds % 3600) / 60);
-    const secs = totalSeconds % 60;
-    return [
-      hrs.toString().padStart(2, "0"),
-      mins.toString().padStart(2, "0"),
-      secs.toString().padStart(2, "0"),
-    ].join(":");
-  };
-
   return (
     <div className="tracker-container">
       <button className="back-button" onClick={handleBack} disabled={isPlaying}>
@@ -81,7 +72,7 @@ export default function PracticeTracker() {
       <div className="tracker-header">
         <span className="live-indicator">
           <span className={`dot ${isPlaying ? "pulse" : ""}`}></span>
-          {isPlaying ? "LIVE SESSION" : "SESIÓN PAUSADA"}
+          {isPlaying ? "LIVE SESSION" : "PAUSED SESSION"}
         </span>
 
         <h2 className="tracker-title">{currentSong.title}</h2>

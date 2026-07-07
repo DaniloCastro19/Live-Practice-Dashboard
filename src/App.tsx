@@ -15,9 +15,6 @@ const SongGridComponent = lazy(
 const AddSongFormComponent = lazy(
   () => import("./features/repertoire/components/AddSongForm"),
 );
-const AddFloatingButtonComponent = lazy(
-  () => import("./features/repertoire/components/AddFloatingButton"),
-);
 const PracticeTrackerComponent = lazy(
   () => import("./features/practice/components/PracticeTracker"),
 );
@@ -29,12 +26,8 @@ function App() {
       <Routes>
         <Route path="/" element={<SongGridComponent />} />
         <Route path="/addSong" element={<AddSongFormComponent />} />
-        <Route path="/practice/:songId" element={<PracticeTrackerComponent />} />
+        <Route path="/liveSession/:songId" element={<PracticeTrackerComponent />} />
       </Routes>
-      <SongGridComponent />
-      <div className="floating-btn-container">
-        <AddFloatingButtonComponent />
-      </div>
     </Suspense>
   );
 }
