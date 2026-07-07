@@ -11,11 +11,13 @@ export default function SongCard({ song }: SongCardProps) {
     <>
       <SlCard key={song.id} className="card">
         <strong>{song.title}</strong>
+        <br />
         {!song.isCover ? (
           <p>Own</p>
         ) : (
           song.author && <p>Author: {song.author}</p>
         )}
+        <br />
         <SlBadge variant={isMajorKey(song.key) ? "success" : "neutral"}>
           {song.key}
         </SlBadge>
@@ -32,11 +34,11 @@ const styles = `
     align-items: center;
     padding: 1rem;
     border: 1px solid var(--sl-color-neutral-200);
-    borderRadius: 0.5rem,
-    boxShadow: var(--sl-shadow-x-small),
-    backgroundColor: var(--sl-panel-background-color),
-    transition: transform 0.2s ease-in-out,
-    cursor: "pointer",
+    borderRadius: 0.5rem;
+    boxShadow: var(--sl-shadow-x-small);
+    backgroundColor: var(--sl-panel-background-color);
+    transition: transform 0.2s ease-in-out;
+    cursor: "pointer";
   }
   .card:hover {
     cursor: pointer;
