@@ -19,7 +19,7 @@ const AddSongFormComponent = lazy(
 const PracticeTrackerComponent = lazy(
   () => import("./features/practice/components/PracticeTracker"),
 );
-
+  
 function App() {
   return (
     <Suspense fallback="Loading">

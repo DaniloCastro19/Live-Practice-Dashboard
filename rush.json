@@ -1,0 +1,42 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/rush/v5/rush.schema.json",
+
+  "rushVersion": "5.177.1",
+
+  "pnpmVersion": "9.15.9",
+
+  "nodeSupportedVersionRange": ">=24.11.1 <25.0.0",
+
+  "gitPolicy": {},
+
+  "repository": {},
+
+  "eventHooks": {
+    "preRushInstall": [],
+
+    "postRushInstall": [],
+
+    "preRushBuild": [],
+
+    "postRushBuild": [],
+
+    "preRushx": [],
+
+    "postRushx": []
+  },
+
+  "variants": [],
+
+  "projects": [
+    {
+      "packageName": "@shoelace-style/shoelace",
+      "projectFolder": "libraries/shoelace",
+      "shouldPublish": false
+    },
+    {
+      "packageName": "livepracticedashboard",
+      "projectFolder": "apps/live-practice-dashboard",
+      "shouldPublish": false
+    }
+  ]
+}
