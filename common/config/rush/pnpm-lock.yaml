@@ -13,8 +13,8 @@ importers:
   ../../apps/live-practice-dashboard:
     dependencies:
       '@shoelace-style/shoelace':
-        specifier: workspace:*
-        version: link:../../libraries/shoelace
+        specifier: 2.20.1
+        version: 2.20.1(@floating-ui/utils@0.2.11)(@types/react@19.2.17)
       react:
         specifier: ^19.2.7
         version: 19.2.7
@@ -1371,6 +1371,10 @@ packages:
 
   '@shoelace-style/localize@3.2.2':
     resolution: {integrity: sha512-h3+2/cFWGaw3KQUwintkP4Cy3PtrVW//ysr9DM5nOfIXYekgrHwsELk/nyxc8hmjVP/Kcon7KCzvUtSwUBipfQ==}
+
+  '@shoelace-style/shoelace@2.20.1':
+    resolution: {integrity: sha512-FSghU95jZPGbwr/mybVvk66qRZYpx5FkXL+vLNpy1Vp8UsdwSxXjIHE3fsvMbKWTKi9UFfewHTkc5e7jAqRYoQ==}
+    engines: {node: '>=14.17.0'}
 
   '@sindresorhus/is@0.7.0':
     resolution: {integrity: sha512-ONhaKPIufzzrlNbqtWFFd+jlnemX6lJAgq9ZeiZtS7I1PIf/la7CW4m83rTXRnVnsMbW2k56pGYu7AUFJD9Pow==}
@@ -6580,6 +6584,10 @@ snapshots:
     dependencies:
       '@types/react': 18.3.31
 
+  '@lit/react@1.0.8(@types/react@19.2.17)':
+    dependencies:
+      '@types/react': 19.2.17
+
   '@lit/reactive-element@2.1.2':
     dependencies:
       '@lit-labs/ssr-dom-shim': 1.6.0
@@ -6812,6 +6820,20 @@ snapshots:
   '@shoelace-style/animations@1.2.0': {}
 
   '@shoelace-style/localize@3.2.2': {}
+
+  '@shoelace-style/shoelace@2.20.1(@floating-ui/utils@0.2.11)(@types/react@19.2.17)':
+    dependencies:
+      '@ctrl/tinycolor': 4.2.0
+      '@floating-ui/dom': 1.7.6
+      '@lit/react': 1.0.8(@types/react@19.2.17)
+      '@shoelace-style/animations': 1.2.0
+      '@shoelace-style/localize': 3.2.2
+      composed-offset-position: 0.0.6(@floating-ui/utils@0.2.11)
+      lit: 3.3.3
+      qr-creator: 1.0.0
+    transitivePeerDependencies:
+      - '@floating-ui/utils'
+      - '@types/react'
 
   '@sindresorhus/is@0.7.0': {}
 
