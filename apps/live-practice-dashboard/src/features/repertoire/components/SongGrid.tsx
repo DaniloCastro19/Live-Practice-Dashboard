@@ -42,7 +42,7 @@ export default function SongGrid() {
 
 const styles = `
   .songs-container {
-    min-height: 100vh;
+    min-height: calc(100vh - 100px);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -54,10 +54,18 @@ const styles = `
     grid-template-columns: repeat(5, minmax(0, 1fr));
     gap: 1rem;
     padding: 1rem;
+    overflow: hidden;
   }
 
   .pagination-container {
-    flex: 1;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    position: sticky;
+    bottom: 0;
+    padding: 0.75rem 0;
+    z-index: 10;
+    background: transparent;
   }
 
   .floating-btn-container {
